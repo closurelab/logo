@@ -1,18 +1,18 @@
 # closurelab logo
 
-This repository generates the closurelab organization logo from the ASCII art
-inside [`src/logo.lisp`](src/logo.lisp). The program reads its own source at
-runtime, extracts the marked artwork, and converts its character grid into
-vector geometry. Changing the artwork's spacing or characters therefore
-changes the rendered logo.
+This repository generates the closurelab organization logo from
+[`src/logo.lisp`](src/logo.lisp). The complete file is both executable Common
+Lisp and ASCII art: the program reads its own source and converts every
+non-space character into vector geometry. There is no separately marked
+artwork block, so changing the source formatting changes the rendered logo.
 
-The source uses three palette characters:
+Color is assigned by source-code region:
 
-| Character | Shape               | Color     |
-| --------- | ------------------- | --------- |
-| `C`       | Opening parenthesis | `#453A62` |
-| `L`       | Greek lambda        | `#5E5086` |
-| `R`       | Closing parenthesis | `#8F4E8B` |
+| Source columns | Shape               | Color     |
+| -------------- | ------------------- | --------- |
+| Left third     | Opening parenthesis | `#453A62` |
+| Middle third   | Greek lambda        | `#5E5086` |
+| Right third    | Closing parenthesis | `#8F4E8B` |
 
 The SVG has a square view box derived from the source-art dimensions. The PNG
 is a transparent 1024 by 1024 RGBA rendering of that SVG.

@@ -18,8 +18,9 @@ layout the source of truth for the rendered SVG and PNG files.
 
 ## Logo source
 
-- Keep the ASCII artwork in the Common Lisp source. The generator must read
-  that source file rather than a separate artwork or data file.
+- Keep the entire Common Lisp source formatted as the ASCII artwork. The
+  generator must read every source line and render every non-space character;
+  do not introduce a marked artwork block or a separate data file.
 - Treat generated SVG and PNG files as derived artifacts. Change the Common
   Lisp source and regenerate them instead of editing them directly.
 - Preserve a recognizable `( lambda )` composition: the opening parenthesis
