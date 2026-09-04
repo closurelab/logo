@@ -4,7 +4,5 @@
 /.pre-commit-config.yaml
 /result
 
-/assets/*
-!/assets/.keep
 *.png
 *.svg
