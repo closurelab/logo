@@ -25,13 +25,17 @@
         { system }:
         import nixpkgs { inherit system; };
 
+      logoFor =
+        { pkgs }:
+        import ./nix/logo.nix { inherit pkgs; };
+
       preCommitFor = import ./nix/pre-commit.nix {
         inherit git-hooks;
         src = ./.;
       };
 
       devShellFor = import ./nix/dev-shell.nix {
-        inherit pkgsFor preCommitFor;
+        inherit logoFor pkgsFor preCommitFor;
       };
     in
     {
@@ -48,5 +52,31 @@
       devShells = forSystems (system: {
         default = devShellFor { inherit system; };
       });
+
+      packages = forSystems (
+        system:
+        let
+          pkgs = pkgsFor { inherit system; };
+          logo = logoFor { inherit pkgs; };
+        in
+        {
+          default = logo.artifacts;
+          inherit (logo) generator;
+        }
+      );
+
+      apps = forSystems (
+        system:
+        let
+          pkgs = pkgsFor { inherit system; };
+          logo = logoFor { inherit pkgs; };
+        in
+        {
+          default = {
+            type = "app";
+            program = pkgs.lib.getExe logo.generator;
+          };
+        }
+      );
     };
 }
