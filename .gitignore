@@ -6,3 +6,6 @@
 
 *.png
 *.svg
+
+# macOS
+.DS_Store
