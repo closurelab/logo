@@ -1,4 +1,4 @@
-              (in-package #:cl-user)                                  (defconstant                                  +size+ 1024) (defconstant
+              (in-package #:cl-user)                                  (defconstant                                  +size+ 512)  (defconstant
               +pad+ 2) (defparameter                                  +colors+                                      '("#453A62" "#5E5086"
               "#8F4E8B")) (defun                                      source-lines ()                               (unless *load-truename* (error
               "Missing source pathname."))                            (with-open-file                               (input *load-truename*
@@ -34,7 +34,7 @@ nil "translate(~D ~D)"                                                    offset
 (write-runs path art lower                                                upper)))) (format                                       stream "</g>~%</svg>~%"))))
 (defun render-png (svg png)                                                                                                       (ensure-directories-exist png)
 (let ((process                                                            (sb-ext:run-program                                     "rsvg-convert" (list
-"--format=png" (format nil                                                 "--width=~D"                                           +size+) (format nil
+"-b" "white" (format nil                                                  "--width=~D"                                           +size+) (format nil
 "--height=~D" +size+) (format                                              nil "--output=~A"                                      (namestring png)) (namestring
 svg)) :search t :output                                                   *standard-output*                                       :error *error-output* :wait
 t))) (unless (zerop                                                                                                               (sb-ext:process-exit-code

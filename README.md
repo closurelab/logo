@@ -15,7 +15,7 @@ Color is assigned by source-code region:
 | Right third    | Closing parenthesis | `#8F4E8B` |
 
 The SVG has a square view box derived from the source-art dimensions. The PNG
-is a transparent 1024 by 1024 RGBA rendering of that SVG.
+is a 512 by 512 rendering of that SVG with an opaque white background.
 
 ## Generate the logo
 
@@ -26,6 +26,10 @@ ignored `assets` directory:
 $ nix develop
 $ just generate
 ```
+
+`just generate` resolves the generator from the current Git-backed flake on
+each run, so source edits take effect even in an existing development shell.
+Stage newly added flake inputs with Git before generating.
 
 The generator can also be run directly without entering the shell. Its sole
 optional argument is the output directory, which defaults to `build`:

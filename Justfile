@@ -1,9 +1,9 @@
 default:
     @just --list
 
-# Regenerate the tracked SVG and PNG from the Common Lisp source.
+# Regenerate the SVG and PNG from the current Common Lisp source.
 generate output-directory="assets":
-    closurelab-logo "{{ output-directory }}"
+    nix run . -- "{{ output-directory }}"
 
 # Run every configured pre-commit hook.
 check:
